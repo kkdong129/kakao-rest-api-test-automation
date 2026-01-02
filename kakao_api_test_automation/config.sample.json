@@ -1,0 +1,35 @@
+{
+  "kakao_api": {
+    "rest_api_key": "YOUR_KAKAO_REST_API_KEY",
+    "access_token": "YOUR_KAKAO_ACCESS_TOKEN"
+  },
+  "test_data": {
+    "commerce_template": {
+      "title": "YOUR_COMMERCE_PRODUCT_TITLE",
+      "links": {
+        "image_url": "YOUR_LINK_IMAGE_URL",
+        "web_url": "YOUR_LINK_WEB_URL",
+        "mobile_web_url": "YOUR_LINK_MOBILE_WEB_URL",
+        "buttons": [
+          {
+            "title": "YOUR_BUTTON_TITLE_1",
+            "web_url": "YOUR_BUTTON_WEB_URL_1",
+            "mobile_web_url": "YOUR_BUTTON_MOBILE_WEB_URL_1"
+          },
+          {
+            "title": "YOUR_BUTTON_TITLE_2",
+            "web_url": "YOUR_BUTTON_WEB_URL_2",
+            "mobile_web_url": "YOUR_BUTTON_MOBILE_WEB_URL_2"
+          }
+        ]
+      },
+      "negative_test_data": {
+        "invalid_token": "INVALID_TOKEN",
+        "wrong_path": "YOUR_WRONG_PATH",
+        "missing_param_msg": {},
+        "invalid_json_format": "YOUR_INVALID_JSON_FORMAT",
+        "unauthorized_scope_token": "MESSAGE_SCOPE_MISSING_TOKEN"
+      }
+    }
+  }
+}

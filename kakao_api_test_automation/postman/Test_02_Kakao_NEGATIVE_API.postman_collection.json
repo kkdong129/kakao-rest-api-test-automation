@@ -1,0 +1,272 @@
+{
+	"info": {
+		"_postman_id": "97c9df8e-abb1-44bc-93a8-c2326aacf22e",
+		"name": "Test_02_Kakao_NEGATIVE_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21879275"
+	},
+	"item": [
+		{
+			"name": "TC-01: 유효하지 않은 토큰 (401)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"[TC-01] 유효하지 않은 토큰 차단\", function () {",
+							"    pm.response.to.have.status(401);",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(-401);",
+							"    console.log(\"▶ [TC-01] 성공 - Kakao Code: \" + jsonData.code);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{invalid_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/v1/user/access_token_info",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"access_token_info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC-02: 잘못된 URL 경로 (404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"[TC-02] 잘못된 URL 경로 차단 검증 성공\", function () {",
+							"    pm.response.to.have.status(404);",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(-404);",
+							"    console.log(\"▶ [TC-02] 성공 - Kakao Code: \" + jsonData.code);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/v2/user/mes",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v2",
+						"user",
+						"mes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC-03: 필수 파라미터 누락 (400)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"[TC-03] 필수 파라미터 누락 검증\", function () {",
+							"    pm.response.to.have.status(400);",
+							"    pm.expect(pm.response.json().code).to.eql(-2);",
+							"    console.log(\"▶ [TC-03] 성공 - Message: \" + pm.response.json().msg);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "template_object",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/v2/api/talk/memo/default/send",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v2",
+						"api",
+						"talk",
+						"memo",
+						"default",
+						"send"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC-04: 잘못된 JSON 형식 전송 (400)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"[TC-04] 잘못된 JSON 형식 전송\", function () {",
+							"    pm.response.to.have.status(400);",
+							"    pm.expect(pm.response.json().code).to.eql(-2);",
+							"    console.log(\"▶ [TC-04] 성공 - Message: \" + pm.response.json().msg);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "template_object",
+							"value": "{{invalid_json_format}}",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/v2/api/talk/memo/default/send",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v2",
+						"api",
+						"talk",
+						"memo",
+						"default",
+						"send"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

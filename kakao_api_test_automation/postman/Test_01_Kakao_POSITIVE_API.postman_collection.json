@@ -1,0 +1,213 @@
+{
+	"info": {
+		"_postman_id": "565aaa7b-2a85-4e67-991b-2ae5c89b089a",
+		"name": "Test_01_Kakao_POSITIVE_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21879275"
+	},
+	"item": [
+		{
+			"name": "Step 1: 토큰 정보 가져오기 (GET)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Step 1. 액세스 토큰 유효성 검증\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('id');",
+							"    console.log(\"▶ Step 1 완료 - App ID: \" + jsonData.id);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/v1/user/access_token_info",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"access_token_info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Step 2: 나에게 메시지 보내기 (POST)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Step 2. 나에게 커머스 메시지 전송\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    pm.expect(pm.response.json().result_code).to.eql(0);",
+							"    console.log(\"▶ Step 2 완료 - 메시지 전송 성공\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "template_object",
+							"value": "{\"object_type\":\"commerce\",\"content\":{\"title\":\"{{commerce_title}}\",\"image_url\":\"{{image_url}}\",\"link\":{\"web_url\":\"{{web_url}}\",\"mobile_web_url\":\"{{mobile_url}}\"}},\"commerce\":{\"regular_price\":68900,\"discount_price\":49700,\"discount_rate\":27},\"buttons\":[{\"title\":\"상품상세\",\"link\":{\"web_url\":\"{{web_url}}\",\"mobile_web_url\":\"{{mobile_url}}\"}}]}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/v2/api/talk/memo/default/send",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v2",
+						"api",
+						"talk",
+						"memo",
+						"default",
+						"send"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Step 3: 사용자 정보 가져오기 (GET)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Step 3. 사용자 정보 조회 및 검증\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    var nickname = pm.response.json().properties.nickname;",
+							"    pm.expect(nickname).to.not.be.null;",
+							"    console.log(\"▶ Step 3 완료 - 닉네임: \" + nickname);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/v2/user/me",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v2",
+						"user",
+						"me"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
