@@ -59,13 +59,10 @@ config.sample.json 파일을 복사하여 config.json을 생성합니다.
 주의: config.json은 보안을 위해 git 추적에서 제외되어 있습니다.
 
 ### Execution (Python)
+테스트 실행 및 결과 확인
 ```Bash
-# 테스트 실행 및 결과 확인
-python -m unittest discover -v -s .. -p "kakao_rest_api_test.py"
+python kakao_rest_api_test.py
 ```
-#### 명령어 옵션 설명:
-- -v (verbose): 테스트 결과(성공/실패/에러)를 상세하게 출력합니다.
-- -s ..: 상위 디렉토리(..)에서 테스트 탐색을 시작합니다.
 
 ### Execution (Postman)
 - postman/ 폴더 내의 Collection과 Environment JSON 파일을 Postman에 Import 합니다.
