@@ -7,8 +7,8 @@ Python의 `unittest`와 `Postman`을 사용하여 API의 신뢰성을 검증합�
 
 ## 🚀 Project Overview
 
-본 프로젝트는 카카오 REST API의 주요 기능을 체인(Chain) 형태로 엮은 **통합 시나리오 테스트**와, 다양한 에러 상황을 가정한 **부정 테스트(Negative Test)**를 포함합니다. 
-실제 서비스 환경에서 발생할 수 있는 데이터 규격 오류 및 권한 문제를 자동화된 스크립트로 검증하는 데 목적이 있습니다.
+본 프로젝트는 카카오 REST API의 주요 기능을 체인(Chain) 형태로 엮은 통합 시나리오 테스트와, 다양한 에러 상황을 가정한 부정 테스트(Negative Test)를 포함합니다. 
+실제 서비스 환경에서 발생할 수 있는 데이터 규격 오류 및 인증 문제를 자동화된 스크립트로 검증하는 데 목적이 있습니다.
 
 ---
 
@@ -17,7 +17,7 @@ Python의 `unittest`와 `Postman`을 사용하여 API의 신뢰성을 검증합�
 - **Language:** Python
 - **Test Framework:** unittest
 - **Library:** Requests, Unittest
-- **Tool:** `Postman` (Collection & Environment)
+- **Tool:** Postman (Collection & Environment)
 - **Configuration:** JSON 기반 환경 설정 관리
 
 ---
