@@ -69,3 +69,12 @@ python kakao_rest_api_test.py
 - 우측 상단 환경 설정에서 Import한 환경 변수(Environment)를 선택합니다.
 - accessToken 변수 값에 본인의 카카오 API 토큰을 입력하고 저장합니다.
 - Collection 내의 개별 Request를 순서대로 선택하여 실행(Send)하고, 하단에 응답 결과를 확인합니다.
+
+---
+
+### ⚠️ 주의 사항 (Precautions)
+- 액세스 토큰 만료 주의: 카카오 액세스 토큰은 유효 기간이 매우 짧습니다(약 6~12시간). 토큰이 만료되었다면, 새로 발급받아서 config.json에 업데이트해주세요.
+- 보안 정보 노출 금지: REST API KEY, CLIENT SECRET, REFRESH TOKEN 등과 같은 민감 정보는 절대 소스 코드나 Public 저장소에 직접 커밋하지 않도록 주의해주세요.
+- API 호출 할당량(Quota): 테스트를 단시간 내에 과도하게 반복 실행할 경우, 카카오 API 플랫폼의 호출 제한(Quota)에 걸려 429 Too Many Requests 에러가 발생할 수 있습니다.
+- 메시지 전송 제한: '나에게 보내기' API는 일일 전송 제한 횟수가 존재합니다. 테스트 전용 계정을 사용하더라도 실제 메시지가 발송되므로 주의해주세요.
+
